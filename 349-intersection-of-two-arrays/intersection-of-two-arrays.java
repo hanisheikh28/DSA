@@ -2,23 +2,28 @@ import java.util.*;
 
 class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
-        // use a set to store unique intersection elements
-        Set<Integer> set = new HashSet<>();
+        Set<Integer> set1 = new HashSet<>();
+        Set<Integer> set2 = new HashSet<>();
 
-        for (int i = 0; i < nums1.length; i++) {
-            for (int j = 0; j < nums2.length; j++) {   // use nums2.length
-                if (nums1[i] == nums2[j]) {           // compare nums1[i] with nums2[j]
-                    set.add(nums1[i]);                // add value (unique by Set)
-                }
+        // Store elements of nums1
+        for (int num : nums1) {
+            set1.add(num);
+        }
+
+        // Find common elements
+        for (int num : nums2) {
+            if (set1.contains(num)) {
+                set2.add(num);
             }
         }
 
-        // convert Set<Integer> to int[]
-        int[] a = new int[set.size()];
-        int k = 0;
-        for (int val : set) {
-            a[k++] = val;
+        // Convert set2 to array
+        int[] result = new int[set2.size()];
+        int i = 0;
+        for (int num : set2) {
+            result[i++] = num;
         }
-        return a;
+
+        return result;
     }
 }
